@@ -12,9 +12,9 @@ namespace CarMaintenanceService.Controllers
     public class CarInfoController : Controller
     {
         ICarInfoProvider _provider;
-        CarInfoController(ICarInfoProvider provider)
+        CarInfoController(/*ICarInfoProvider provider*/)
         {
-            _provider = provider;
+            //_provider = provider;
         }
         // GET api/values
         //[HttpGet]
@@ -23,18 +23,20 @@ namespace CarMaintenanceService.Controllers
         //    return new string[] { "value1", "value2" };
         //}
 
-        // GET api/values/5
+        // GET api/carinfo/5
         [HttpGet("{id}")]
-        public CarInfo Get(int id)
+        public string Get(int id)
         {
-            return new CarInfo();
+            return "works";
+            //return Json(new CarInfo());
         }
 
         // POST api/values
         [HttpPost]
-        public CarInfo Post([FromBody]CarInfo carInfo)
+        public IActionResult Post([FromBody]CarInfo carInfo)
         {
-            return _provider.PersistCarInfo(carInfo);
+            //return Json(_provider.PersistCarInfo(carInfo));
+            return Ok();
         }
 
         // PUT api/values/5

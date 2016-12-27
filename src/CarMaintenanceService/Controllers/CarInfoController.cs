@@ -4,12 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CarMaintenanceService.Models;
+using CarMaintenanceService.Providers;
 
 namespace CarMaintenanceService.Controllers
 {
     [Route("api/[controller]")]
     public class CarInfoController : Controller
     {
+        ICarInfoProvider _provider;
+        CarInfoController(ICarInfoProvider provider)
+        {
+            _provider = provider;
+        }
         // GET api/values
         //[HttpGet]
         //public IEnumerable<string> Get()
@@ -28,7 +34,7 @@ namespace CarMaintenanceService.Controllers
         [HttpPost]
         public CarInfo Post([FromBody]CarInfo carInfo)
         {
-            return carInfo;
+            return _provider.PersistCarInfo(carInfo);
         }
 
         // PUT api/values/5

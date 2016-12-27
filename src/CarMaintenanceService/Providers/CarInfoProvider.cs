@@ -10,7 +10,7 @@ namespace CarMaintenanceService.Providers
     public class CarInfoProvider : ICarInfoProvider
     {
         ICarInfoRepository _repo;
-        CarInfoProvider(ICarInfoRepository repo)
+        public CarInfoProvider(ICarInfoRepository repo)
         {
             _repo = repo;
         }

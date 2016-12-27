@@ -33,8 +33,8 @@ namespace CarMaintenanceService
             services.AddMvc();
 
             //add dependency
-            //services.AddSingleton<ICarInfoProvider, CarInfoProvider>();
-            //services.AddSingleton<ICarInfoRepository, CarInfoRepository>();
+            services.AddSingleton<ICarInfoProvider, CarInfoProvider>();
+            services.AddSingleton<ICarInfoRepository, CarInfoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

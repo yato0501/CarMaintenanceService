@@ -8,6 +8,6 @@ namespace CarMaintenanceService.Providers
 {
     public interface ICarInfoProvider
     {
-        CarInfo PersistCarInfo(CarInfo carInfo);
+        Task<CarInfoResponse> PersistCarInfo(CarInfoRequest carInfo);
     }
 }

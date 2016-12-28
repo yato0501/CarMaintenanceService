@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CarMaintenanceService.Models
 {
-    public class CarInfo
+    public class CarInfoRequest
     {
         public string CarNickName { get; set; }
         public string Vin { get; set; }

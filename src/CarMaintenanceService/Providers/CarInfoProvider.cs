@@ -16,9 +16,9 @@ namespace CarMaintenanceService.Providers
         }
 
 
-        public CarInfo PersistCarInfo(CarInfo carInfo)
+        public async Task<CarInfoResponse> PersistCarInfo(CarInfoRequest carInfo)
         {
-            return _repo.PersistCarInfo(carInfo);
+            return await _repo.PersistCarInfo(carInfo);
         }
     }
 }

@@ -27,12 +27,12 @@ namespace CarMaintenanceService.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Json(new CarInfo());
+            return Json(new CarInfoRequest());
         }
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]CarInfo carInfo)
+        public async Task<IActionResult> Post([FromBody]CarInfoRequest carInfo)
         {
             return Json(_provider.PersistCarInfo(carInfo));
         }

@@ -11,5 +11,6 @@ namespace CarMaintenanceService.Providers
     {
         Task<CarInfoResponse> PersistCarInfo(CarInfoRequest carInfo);
         Task<IEnumerable<CarInfoResponse>> GetCarInfoList(CarInfoSearch carInfoSearch);
+        Task<CarInfoResponse> GetCarInfo(string guid);
     }
 }

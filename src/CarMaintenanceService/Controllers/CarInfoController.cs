@@ -16,21 +16,19 @@ namespace CarMaintenanceService.Controllers
         {
             _provider = provider;
         }
-        //GET api/values
+
        [HttpPost("search")]
         public async Task<IActionResult> SearchCarInfo([FromBody]CarInfoSearch carInfoSearch)
         {
             return Ok(await _provider.GetCarInfoList(carInfoSearch));
         }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public IActionResult Get(string guid)
+        
+        [HttpGet("{guid}")]
+        public async Task<IActionResult> GetCarInfo([FromRoute]string guid)
         {
-            return Json(new CarInfoRequest());
+            return Ok(await _provider.GetCarInfo(guid));
         }
-
-        // POST api/values
+        
         [HttpPost]
         public async Task<IActionResult> InsertCarInfo([FromBody]CarInfoRequest carInfo)
         {

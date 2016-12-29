@@ -47,11 +47,20 @@ namespace CarMaintenanceService.Providers
             return buildFilter;
         }
 
-      
-
         public async Task<CarInfoResponse> PersistCarInfo(CarInfoRequest carInfo)
         {
             return await _repo.PersistCarInfo(carInfo);
+        }
+
+        public async Task<CarInfoResponse> GetCarInfo(string guid)
+        {
+            var builder = Builders<CarInfoResponse>.Filter;
+            FilterDefinition<CarInfoResponse> buildFilter = builder.Eq("Id", guid);
+
+            var carInfoList = await _repo.GetCarInfoList(buildFilter);
+
+            //we should only have one since we're searching for id
+            return carInfoList.FirstOrDefault();
         }
     }
 }

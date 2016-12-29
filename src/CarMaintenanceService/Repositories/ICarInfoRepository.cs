@@ -11,6 +11,6 @@ namespace CarMaintenanceService.Repositories
     public interface ICarInfoRepository
     {
         Task<CarInfoResponse> PersistCarInfo(CarInfoRequest carInfo);
-        Task<IEnumerable<CarInfoResponse>> GetCarInfoList(FilterDefinition<CarInfoResponse> carInfoSearch);
+        Task<List<CarInfoResponse>> GetCarInfoList(FilterDefinition<CarInfoResponse> carInfoSearch);
     }
 }

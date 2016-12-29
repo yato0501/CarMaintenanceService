@@ -23,7 +23,7 @@ namespace CarMaintenanceService.Repositories
             
         }
 
-        public async Task<IEnumerable<CarInfoResponse>> GetCarInfoList(FilterDefinition<CarInfoResponse> carInfoSearchFilter)
+        public async Task<List<CarInfoResponse>> GetCarInfoList(FilterDefinition<CarInfoResponse> carInfoSearchFilter)
         {
             var collection = _database.GetCollection<CarInfoResponse>("carInfo");
 

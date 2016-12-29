@@ -23,6 +23,14 @@ namespace CarMaintenanceService.Repositories
             
         }
 
+        public async Task<IEnumerable<CarInfoResponse>> GetCarInfoList(FilterDefinition<CarInfoResponse> carInfoSearchFilter)
+        {
+            var collection = _database.GetCollection<CarInfoResponse>("carInfo");
+
+            var result = await collection.Find(carInfoSearchFilter).ToListAsync();
+            return result;
+        }
+
         public async Task<CarInfoResponse> PersistCarInfo(CarInfoRequest carInfo)
         {
 

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using CarMaintenanceService.Models;
 using CarMaintenanceService.Repositories;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace CarMaintenanceService.Providers
 {
@@ -15,6 +17,37 @@ namespace CarMaintenanceService.Providers
             _repo = repo;
         }
 
+        public async Task<IEnumerable<CarInfoResponse>> GetCarInfoList(CarInfoSearch carInfoSearch)
+        {
+            var filter = buildFilter(carInfoSearch);
+            IEnumerable<CarInfoResponse> carInfoList = await _repo.GetCarInfoList(filter);
+            return carInfoList;
+        }
+
+        private FilterDefinition<CarInfoResponse> buildFilter(CarInfoSearch carInfoSearch)
+        {
+            var builder = Builders<CarInfoResponse>.Filter;
+            FilterDefinition<CarInfoResponse> buildFilter = null;
+            foreach (var filter in carInfoSearch.filters)
+            {
+                //we'll only support "equal" for now.
+                if (filter.Operation.ToLower() == "equal")
+                {
+                    if (buildFilter == null)
+                    {
+                        buildFilter = builder.Eq(filter.Field, filter.Value);
+                    }
+                    else
+                    {
+                        buildFilter &= builder.Eq(filter.Field, filter.Value);
+                    }
+                }
+            }
+
+            return buildFilter;
+        }
+
+      
 
         public async Task<CarInfoResponse> PersistCarInfo(CarInfoRequest carInfo)
         {
